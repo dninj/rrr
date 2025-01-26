@@ -75,18 +75,18 @@ class DB_Map():
             if coordinates:
                 lat, lng = coordinates
                 ax.plot(lng, lat, 'ro', markersize=5, transform=ccrs.Geodetic())
-                ax.text(lng + 0.5, lat + 0.5, city, transform=ccrs.Geodetic()) # +0.5 для смещения текста
+                ax.text(lng + 0.5, lat + 0.5, city, transform=ccrs.Geodetic()) 
 
-        # Определение границ карты по координатам городов (с небольшим отступом)
-        if cities: # Проверка, что список городов не пуст
+       
+        if cities: 
             lats = [self.get_coordinates(city)[0] for city in cities if self.get_coordinates(city)]
             lngs = [self.get_coordinates(city)[1] for city in cities if self.get_coordinates(city)]
 
-            if lats and lngs: # Проверка, что списки координат не пусты
+            if lats and lngs: 
                 ax.set_extent([min(lngs) - 2, max(lngs) + 2, min(lats) - 2, max(lats) + 2], crs=ccrs.PlateCarree())
 
         plt.savefig(path)
-        plt.close() # Закрываем plot после сохранения
+        plt.close() 
 
 
     def draw_distance(self, city1, city2):
